@@ -21,16 +21,7 @@ numbers = [i for i in range(1, len(languages)+1)]
 
 combine_list = list(zip(numbers, [i.upper() for i in languages]))
 
-
-for elem in combine_list:
-    summ = sum([ord(str(i)) for i in elem[1]])
-    index = combine_list.index(elem)
-    delete_indexes = []
-    if summ % elem[0] != 0:
-        delete_indexes.append(index)
-    combine_list[index] = (summ, elem[1])
-
-for index in delete_indexes:
-    combine_list.pop(index)
-
+summ = lambda x: (sum([ord(str(i)) for i in x[1]]), x[1])
+foo = lambda x: x[0] % 2 == 0
+combine_list = list(filter(foo, map(summ, combine_list)))
 print(combine_list)
